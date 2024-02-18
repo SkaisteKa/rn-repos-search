@@ -1,10 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import { SafeAreaView } from 'react-native';
+import IssueSearchScreen from './src/screens';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Text>This react native repos search by owner</Text>
+      <IssueSearchScreen />
     </SafeAreaView>
   );
 };
