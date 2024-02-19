@@ -1,7 +1,8 @@
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, ImageBackground, StyleSheet, View } from 'react-native';
 import React from 'react';
 import Input from '../../components/Input/Input';
 import { useForm } from 'react-hook-form';
+import BackgroundImage from '../../../assets/img/bgr.png';
 
 interface FormData {
   owner: string;
@@ -19,21 +20,29 @@ const IssueSearchScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Input
-        label='Owner'
-        control={control}
-        name='owner'
-        placeholder='Owner name'
-        required
-      />
-      <Input
-        label='Repository'
-        control={control}
-        name='repository'
-        placeholder='Repository name'
-        required
-      />
-      <Button title='Show Issues' onPress={handleSubmit(onSubmit)} />
+      <ImageBackground
+        source={BackgroundImage}
+        resizeMode='cover'
+        style={styles.backgroundImage}
+      >
+        <View style={styles.inputsContainer}>
+          <Input
+            label='Owner'
+            control={control}
+            name='owner'
+            placeholder='Owner name'
+            required
+          />
+          <Input
+            label='Repository'
+            control={control}
+            name='repository'
+            placeholder='Repository name'
+            required
+          />
+        </View>
+        <Button title='Show Issues' onPress={handleSubmit(onSubmit)} />
+      </ImageBackground>
     </View>
   );
 };
@@ -42,7 +51,9 @@ export default IssueSearchScreen;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    height: '100%',
     backgroundColor: '#040C28',
   },
+  backgroundImage: { flex: 1 },
+  inputsContainer: { marginTop: 80 },
 });

@@ -45,14 +45,14 @@ const Input = <T extends FieldValues>({
             </Text>
           )}
           <TextInput
-            style={styles.input}
+            style={[styles.input, error && styles.errorInputStyle]}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             placeholder={placeholder}
             {...rest}
           />
-          {error && <Text style={styles.errorText}>{error.message}</Text>}
+          <Text style={styles.errorText}>{error && error.message}</Text>
         </View>
       )}
     />
@@ -83,7 +83,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderWidth: 1,
     padding: 22,
-    borderRadius: 5,
+    borderRadius: 12,
+    backgroundColor: '#ffffff10',
+  },
+  errorInputStyle: {
+    borderColor: '#FF0000',
   },
   errorText: {
     color: 'red',
