@@ -1,8 +1,9 @@
-import { Button, ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import React from 'react';
-import Input from '../../components/Input/Input';
+import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import BackgroundImage from '../../../assets/img/bgr.png';
+import PrimaryButton from '../../components/PrimaryButton';
 
 interface FormData {
   owner: string;
@@ -10,11 +11,7 @@ interface FormData {
 }
 
 const IssueSearchScreen = () => {
-  const {
-    control,
-    handleSubmit,
-    //  formState: { errors },
-  } = useForm<FormData>();
+  const { control, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => console.log(data);
 
@@ -41,7 +38,7 @@ const IssueSearchScreen = () => {
             required
           />
         </View>
-        <Button title='Show Issues' onPress={handleSubmit(onSubmit)} />
+        <PrimaryButton title='Show Issues' onPress={handleSubmit(onSubmit)} />
       </ImageBackground>
     </View>
   );
