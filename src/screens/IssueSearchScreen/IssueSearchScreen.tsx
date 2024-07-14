@@ -1,17 +1,24 @@
 import { Alert, ImageBackground, StyleSheet, View } from 'react-native';
-import React from 'react';
+import React, { FC } from 'react';
 import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import BackgroundImage from '../../../assets/img/bgr.png';
 import PrimaryButton from '../../components/PrimaryButton';
-import { useGetRepositoryMutation } from '../../queries/useGetRepositoryMutation';
+import { useGetRepositoryMutation } from './quaries/useGetRepositoryMutation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/MainStackNavigator';
 
 interface FormData {
   owner: string;
   repository: string;
 }
 
-const IssueSearchScreen = () => {
+type IssueSearchScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'IssueSearch'
+>;
+
+const IssueSearchScreen: FC<IssueSearchScreenProps> = ({ navigation }) => {
   const { control, getValues, handleSubmit } = useForm<FormData>();
   const {
     mutate: mutateGetRepository,
@@ -29,9 +36,10 @@ const IssueSearchScreen = () => {
         onSuccess: (repoData) => {
           if (repoData.open_issues > 0) {
             console.log('TODO: continue to next screen');
-            return;
+            navigation.navigate('Issues');
+          } else {
+            Alert.alert('There are no open issues for this repository');
           }
-          Alert.alert('There are no open issues for this repository');
         },
         onError: (error) => {
           console.log('Error:', error.message);

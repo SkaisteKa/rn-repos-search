@@ -1,1 +1,4 @@
-export { default } from './IssueSearchScreen';
+import IssueSearchScreen from './IssueSearchScreen';
+import IssuesScreen from './IssuesScreen';
+
+export { IssueSearchScreen, IssuesScreen };
