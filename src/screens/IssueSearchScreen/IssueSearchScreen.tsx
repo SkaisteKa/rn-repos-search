@@ -1,9 +1,10 @@
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { Alert, ImageBackground, StyleSheet, View } from 'react-native';
 import React from 'react';
 import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import BackgroundImage from '../../../assets/img/bgr.png';
 import PrimaryButton from '../../components/PrimaryButton';
+import { useGetRepositoryMutation } from '../../queries/useGetRepositoryMutation';
 
 interface FormData {
   owner: string;
@@ -11,9 +12,30 @@ interface FormData {
 }
 
 const IssueSearchScreen = () => {
-  const { control, handleSubmit } = useForm<FormData>();
+  const { control, getValues, handleSubmit } = useForm<FormData>();
+  const { mutate } = useGetRepositoryMutation();
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = () => {
+    mutate(
+      {
+        owner: getValues('owner').toLowerCase(),
+        repository: getValues('repository').toLowerCase(),
+      },
+      {
+        onSuccess: (repoData) => {
+          if (repoData.open_issues > 0) {
+            console.log('TODO: continue to next screen');
+            return;
+          }
+          Alert.alert('There are no open issues for this repository');
+        },
+        onError: (error) => {
+          console.log('Error:', error.message);
+          Alert.alert('Not Found. Check Owner and Repository and try again');
+        },
+      },
+    );
+  };
 
   return (
     <View style={styles.container}>

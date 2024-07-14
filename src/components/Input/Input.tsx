@@ -50,6 +50,7 @@ const Input = <T extends FieldValues>({
             onChangeText={onChange}
             value={value}
             placeholder={placeholder}
+            autoCapitalize='none'
             {...rest}
           />
           <Text style={styles.errorText}>{error && error.message}</Text>
