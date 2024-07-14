@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { IssueSearchScreen, IssuesScreen } from '../screens';
+import { IssuesSearchScreen, IssuesScreen } from '../screens';
 
 export type RootStackParamList = {
   IssueSearch: undefined;
@@ -14,7 +14,7 @@ export default function MainStackNavigator() {
       screenOptions={{ headerShown: false }}
       initialRouteName='IssueSearch'
     >
-      <Stack.Screen name='IssueSearch' component={IssueSearchScreen} />
+      <Stack.Screen name='IssueSearch' component={IssuesSearchScreen} />
       <Stack.Screen name='Issues' component={IssuesScreen} />
     </Stack.Navigator>
   );

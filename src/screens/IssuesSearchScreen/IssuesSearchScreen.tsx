@@ -13,12 +13,12 @@ interface FormData {
   repository: string;
 }
 
-type IssueSearchScreenProps = NativeStackScreenProps<
+type IssuesSearchScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'IssueSearch'
 >;
 
-const IssueSearchScreen: FC<IssueSearchScreenProps> = ({ navigation }) => {
+const IssuesSearchScreen: FC<IssuesSearchScreenProps> = ({ navigation }) => {
   const { control, getValues, handleSubmit } = useForm<FormData>();
   const {
     mutate: mutateGetRepository,
@@ -84,7 +84,7 @@ const IssueSearchScreen: FC<IssueSearchScreenProps> = ({ navigation }) => {
   );
 };
 
-export default IssueSearchScreen;
+export default IssuesSearchScreen;
 
 const styles = StyleSheet.create({
   container: {
