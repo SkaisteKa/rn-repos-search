@@ -1,7 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
-import IssueSearchScreen from './src/screens';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { NavigationContainer } from '@react-navigation/native';
+import MainStackNavigator from './src/navigation/MainStackNavigator';
 
 const queryClient = new QueryClient();
 
@@ -10,7 +11,9 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <SafeAreaView style={styles.safeAreaStyles}>
         <StatusBar barStyle='light-content' />
-        <IssueSearchScreen />
+        <NavigationContainer>
+          <MainStackNavigator />
+        </NavigationContainer>
       </SafeAreaView>
     </QueryClientProvider>
   );
@@ -19,5 +22,8 @@ const App = () => {
 export default App;
 
 const styles = StyleSheet.create({
-  safeAreaStyles: { backgroundColor: '#040C28' },
+  safeAreaStyles: {
+    flex: 1,
+    backgroundColor: '#040C28',
+  },
 });
