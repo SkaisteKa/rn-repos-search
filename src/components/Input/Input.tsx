@@ -15,6 +15,7 @@ interface InputProps<T extends FieldValues> {
   rules?: RegisterOptions;
   placeholder?: string;
   required?: boolean;
+  isValid?: boolean;
 }
 
 const Input = <T extends FieldValues>({
@@ -24,6 +25,7 @@ const Input = <T extends FieldValues>({
   rules = {},
   placeholder,
   required,
+  isValid,
   ...rest
 }: InputProps<T>) => {
   if (required) rules.required = 'This field is required';
@@ -45,7 +47,11 @@ const Input = <T extends FieldValues>({
             </Text>
           )}
           <TextInput
-            style={[styles.input, error && styles.errorInputStyle]}
+            style={[
+              styles.input,
+              error && styles.errorInputStyle,
+              isValid && styles.successInputStyle,
+            ]}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -79,6 +85,7 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   input: {
+    width: '100%',
     color: '#FFFFFF',
     fontFamily: 'Rubic-Regular',
     fontSize: 18,
@@ -93,6 +100,9 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginTop: 5,
+  },
+  successInputStyle: {
+    borderColor: 'green',
   },
 });
 

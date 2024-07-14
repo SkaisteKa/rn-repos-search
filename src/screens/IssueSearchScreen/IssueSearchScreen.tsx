@@ -13,10 +13,14 @@ interface FormData {
 
 const IssueSearchScreen = () => {
   const { control, getValues, handleSubmit } = useForm<FormData>();
-  const { mutate } = useGetRepositoryMutation();
+  const {
+    mutate: mutateGetRepository,
+    isPending: isGetRepositoryPending,
+    isSuccess: isGetRepositorySuccess,
+  } = useGetRepositoryMutation();
 
   const onSubmit = () => {
-    mutate(
+    mutateGetRepository(
       {
         owner: getValues('owner').toLowerCase(),
         repository: getValues('repository').toLowerCase(),
@@ -50,6 +54,7 @@ const IssueSearchScreen = () => {
             control={control}
             name='owner'
             placeholder='Owner name'
+            isValid={isGetRepositorySuccess}
             required
           />
           <Input
@@ -57,10 +62,15 @@ const IssueSearchScreen = () => {
             control={control}
             name='repository'
             placeholder='Repository name'
+            isValid={isGetRepositorySuccess}
             required
           />
         </View>
-        <PrimaryButton title='Show Issues' onPress={handleSubmit(onSubmit)} />
+        <PrimaryButton
+          title='Show Issues'
+          onPress={handleSubmit(onSubmit)}
+          isLoading={isGetRepositoryPending}
+        />
       </ImageBackground>
     </View>
   );
