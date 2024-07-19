@@ -4,10 +4,19 @@ import BackgroundImage from '../../../assets/img/bgr.png';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/MainStackNavigator';
 import IssueListItem from './components/IssueListItem';
+import { useGetIssuesInfiniteQuery } from './queries/useGetIssuesInfiniteQuery';
 
 type IssuesScreenProps = NativeStackScreenProps<RootStackParamList, 'Issues'>;
 
-const IssuesScreen: FC<IssuesScreenProps> = () => {
+const IssuesScreen: FC<IssuesScreenProps> = (props) => {
+  const { owner, repository } = props.route.params;
+  const {
+    data: issuesData,
+    fetchNextPage,
+    hasNextPage,
+  } = useGetIssuesInfiniteQuery(owner, repository);
+  console.log('pages data', issuesData?.pages.length);
+  console.log('hasNextPage', hasNextPage);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -16,7 +25,7 @@ const IssuesScreen: FC<IssuesScreenProps> = () => {
         style={styles.backgroundImage}
       >
         <View style={styles.inputsContainer}>
-          <Text>IssuesScreen</Text>
+          <Text onPress={() => fetchNextPage()}>IssuesScreen</Text>
           <IssueListItem
             state='open'
             title='this is text for text title jgshg hgksdgh hgkdsgfdjh hgkdfgkhfd'

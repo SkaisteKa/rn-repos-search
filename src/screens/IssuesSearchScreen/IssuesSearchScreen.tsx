@@ -36,7 +36,10 @@ const IssuesSearchScreen: FC<IssuesSearchScreenProps> = ({ navigation }) => {
         onSuccess: (repoData) => {
           if (repoData.open_issues > 0) {
             console.log('TODO: continue to next screen');
-            navigation.navigate('Issues');
+            navigation.navigate('Issues', {
+              owner: getValues('owner'),
+              repository: getValues('repository'),
+            });
           } else {
             Alert.alert('There are no open issues for this repository');
           }
