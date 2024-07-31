@@ -3,7 +3,7 @@ import { IssuesSearchScreen, IssuesScreen } from '../screens';
 
 export type RootStackParamList = {
   IssueSearch: undefined;
-  Issues: { owner: string; repository: string };
+  Issues: { owner: string; repository: string; issuesCount: number };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

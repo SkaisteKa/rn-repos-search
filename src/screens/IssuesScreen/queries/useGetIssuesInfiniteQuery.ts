@@ -26,7 +26,7 @@ export const useGetIssuesInfiniteQuery = (
     queryFn: ({ pageParam }) =>
       fetchIssues(owner, repository, pageParam, issuesState),
     initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
       if (lastPage.length === 0) {
         return undefined;
       }

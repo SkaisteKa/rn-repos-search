@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 25,
     paddingVertical: 20,
-    borderBottomColor: '#E6E7E9',
+    borderBottomColor: '#E6E7E933',
     borderBottomWidth: 0.3,
   },
   titleContainer: {

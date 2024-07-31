@@ -39,6 +39,7 @@ const IssuesSearchScreen: FC<IssuesSearchScreenProps> = ({ navigation }) => {
             navigation.navigate('Issues', {
               owner: getValues('owner'),
               repository: getValues('repository'),
+              issuesCount: repoData.open_issues,
             });
           } else {
             Alert.alert('There are no open issues for this repository');
