@@ -1,4 +1,10 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, { FC } from 'react';
 import BackgroundImage from '../../../assets/img/bgr.png';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -26,18 +32,19 @@ const IssuesScreen: FC<IssuesScreenProps> = (props) => {
       >
         <View style={styles.inputsContainer}>
           <Text onPress={() => fetchNextPage()}>IssuesScreen</Text>
-          <IssueListItem
-            state='open'
-            title='this is text for text title jgshg hgksdgh hgkdsgfdjh hgkdfgkhfd'
-            id='423432'
-            user='cat5345'
-            commentsCount={2}
-          />
-          <IssueListItem
-            state='open'
-            title='this is text for text title'
-            id='423432'
-            user='cat5345'
+          <FlatList
+            data={issuesData?.pages.flat()}
+            renderItem={({ item }) => {
+              return (
+                <IssueListItem
+                  state={item.state}
+                  title={item.title}
+                  id={item.id}
+                  user={item.user.login}
+                  commentsCount={item.comments}
+                />
+              );
+            }}
           />
         </View>
       </ImageBackground>

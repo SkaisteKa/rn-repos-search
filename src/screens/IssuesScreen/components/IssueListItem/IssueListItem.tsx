@@ -7,7 +7,7 @@ type IssueListItemProps = {
   title: string;
   id: string;
   user: string;
-  commentsCount?: number;
+  commentsCount: number;
 };
 
 enum IssueState {
@@ -39,7 +39,7 @@ const IssueListItem: FC<IssueListItemProps> = ({
         </Text>
         <Text style={styles.textStyle}>{`#${id} opened by ${user}`}</Text>
       </View>
-      {commentsCount && (
+      {commentsCount > 0 && (
         <View style={styles.commentsContainer}>
           <Image
             source={require('./assets/chat-bubble.png')}
