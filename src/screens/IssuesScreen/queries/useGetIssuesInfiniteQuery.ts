@@ -11,7 +11,7 @@ const fetchIssues = async (
 ) => {
   const { data } = await axios.get(
     `https://api.github.com/repos/${owner}/${repository}/issues`,
-    { params: { page: pageParam, per_page: 3, state: issuesState } },
+    { params: { page: pageParam, per_page: 7, state: issuesState } },
   );
   return data;
 };
@@ -25,7 +25,12 @@ export const useGetIssuesInfiniteQuery = (
     queryKey: QUERY_KEY,
     queryFn: ({ pageParam }) =>
       fetchIssues(owner, repository, pageParam, issuesState),
-    getNextPageParam: (lastPage) => lastPage.nextPage ?? false,
     initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages, lastPageParam) => {
+      if (lastPage.length === 0) {
+        return undefined;
+      }
+      return lastPageParam + 1;
+    },
   });
 };
