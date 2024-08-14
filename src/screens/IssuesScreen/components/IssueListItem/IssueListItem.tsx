@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'react-native';
 
