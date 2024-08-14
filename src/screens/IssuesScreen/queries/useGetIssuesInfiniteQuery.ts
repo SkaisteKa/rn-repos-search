@@ -22,7 +22,7 @@ export const useGetIssuesInfiniteQuery = (
   issuesState: string,
 ) => {
   return useInfiniteQuery({
-    queryKey: QUERY_KEY,
+    queryKey: [...QUERY_KEY, issuesState],
     queryFn: ({ pageParam }) =>
       fetchIssues(owner, repository, pageParam, issuesState),
     initialPageParam: 1,
