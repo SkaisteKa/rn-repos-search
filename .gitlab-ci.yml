@@ -1,0 +1,12 @@
+stages:
+  - lint
+
+eslint_job:
+  stage: lint
+  image: node:20
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+  only:
+    - branches
