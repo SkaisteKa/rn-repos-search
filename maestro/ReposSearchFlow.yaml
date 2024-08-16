@@ -1,0 +1,23 @@
+#to launch test use: maestro test maestro/ReposSearchFlow.yaml
+appId: MyReposSearch
+---
+- tapOn:
+    id: 'MyReposSearch'
+- tapOn: 'Owner name'
+- inputText: 'facebook'
+- tapOn: 'Show Issues'
+- assertVisible: 'This field is required'
+- tapOn: 'Repository name'
+- inputText: 'reac'
+- assertNotVisible: 'This field is required'
+- tapOn: 'Show Issues'
+- assertVisible: 'Not Found. Check Owner and Repository and try again'
+- tapOn: 'OK'
+- tapOn: 'reac'
+- inputText: 'react'
+- tapOn: 'Show Issues'
+- assertVisible: 'Issues'
+- 'scroll'
+- tapOn: 'Closed'
+- 'scroll'
+- stopApp: 'MyReposSearch'
