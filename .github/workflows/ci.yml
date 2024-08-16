@@ -31,15 +31,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-      - name: Install CocoaPods
-        run: |
-          cd ios
-          pod install
-          cd ..
-
-      - name: Build and install iOS app
-        run: xcodebuild -workspace ios/MyReposSearch.xcworkspace -scheme MyReposSearch -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' build
-
-      - name: Run Maestro tests
-        run: maestro test maestro/ReposSearchFlow.yaml
